@@ -6,10 +6,9 @@
 
 1. Добавьте зависимость из гит-репозитория в `pubspec.yaml`.
     ```yaml
-    dependencies:
-        stun_consent:
-            git:
-              url: ssh://git@git.jetbrains.space/stun/stun-packages/stun-consent.git
+    stun_consent:
+      git:
+        url: ssh://git@git.jetbrains.space/stun/stun-packages/stun-consent.git
     ```
 2. Добавьте в проект новый файл типа `json` и подключите его как `asset` в `pubspec.yaml`.
 3. Заполните файл контентом, который нужно отображать на экране согласия пользователя. Ниже представлен пример файла.

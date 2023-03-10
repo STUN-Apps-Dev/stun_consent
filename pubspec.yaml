@@ -1,0 +1,25 @@
+name: stun_consent
+description: A new Flutter package project.
+version: 0.0.1
+homepage: "none"
+
+environment:
+  sdk: ">=2.19.2 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.0.18
+  url_launcher: ^6.1.10
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - packages/stun_consent/logo.png

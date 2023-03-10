@@ -1,4 +1,4 @@
-import 'dart:convert';
+part of 'stun_consent.dart';
 
 class ConsentData {
   final String title;

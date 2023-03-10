@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stun_consent/consent_config.dart';
 import 'package:stun_consent/stun_consent.dart';
 
 void main() {

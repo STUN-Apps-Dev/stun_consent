@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'stun_consent.dart';
 
 class ConsentConfig {
   final Color backgroundColor;

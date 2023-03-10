@@ -2,17 +2,18 @@
 
 library stun_consent;
 
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stun_consent/consent_config.dart';
-import 'package:stun_consent/consent_data.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 part 'consent_dialog.dart';
+part 'consent_data.dart';
+part 'consent_config.dart';
 
 class StunConsent {
   static const _kHasConsentKey = 'has_consent';

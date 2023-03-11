@@ -167,7 +167,9 @@ class _BottombarWidget extends StatelessWidget {
                   width: double.infinity,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      await config.onRequestPermissions?.call();
+                      // ignore: use_build_context_synchronously
                       Navigator.of(context).pop(true);
                     },
                     style: ElevatedButton.styleFrom(

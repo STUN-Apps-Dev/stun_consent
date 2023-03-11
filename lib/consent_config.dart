@@ -7,6 +7,7 @@ class ConsentConfig {
   final String appIconPath;
   final String appName;
   final String contentPath;
+  final Future<void> Function()? onRequestPermissions;
 
   ConsentConfig({
     this.backgroundColor = const Color(0xffe3e7e8),
@@ -15,5 +16,6 @@ class ConsentConfig {
     required this.appIconPath,
     required this.appName,
     required this.contentPath,
+    this.onRequestPermissions,
   });
 }

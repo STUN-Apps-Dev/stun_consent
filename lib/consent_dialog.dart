@@ -20,15 +20,16 @@ class ConsentDialog extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: Row(
             children: [
+              const SizedBox(width: 16),
               Image.asset(
                 config.appIconPath,
-                width: 28,
-                height: 28,
+                width: 32,
+                height: 32,
               ),
               const SizedBox(width: 16),
               Flexible(
                 child: Text(
-                  config.appName + config.appName,
+                  config.appName,
                   style: TextStyle(
                     color: config.textColor,
                     fontSize: 20,

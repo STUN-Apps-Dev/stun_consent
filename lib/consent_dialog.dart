@@ -158,7 +158,7 @@ class _BottombarWidget extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          color: Colors.white,
+          color: config.footerColor,
           padding: const EdgeInsets.all(16),
           child: SafeArea(
             child: Column(
@@ -180,7 +180,7 @@ class _BottombarWidget extends StatelessWidget {
                     child: Text(
                       "Всё понятно, спасибо",
                       style: TextStyle(
-                        color: config.textColor,
+                        color: config.buttonTextColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),

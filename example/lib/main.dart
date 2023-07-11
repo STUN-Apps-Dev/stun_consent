@@ -54,6 +54,20 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
+  Future<void> _showDarkConsent() async {
+    await StunConsent.showConsent(
+      context,
+      ConsentConfig.dark(
+        appIconPath: 'assets/ic_launcher.png',
+        appName: 'Stun Consent Demo App',
+        contentPath: 'assets/content.json',
+      ),
+    );
+    _hasConsent = await StunConsent.hasUserConsent;
+    _wasShown = await StunConsent.dialogWasShown;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,11 +77,19 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: ElevatedButton(
-              onPressed: _showConsent,
-              child: const Text('Show Consent'),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: _showConsent,
+                child: const Text('Show Consent'),
+              ),
+              const SizedBox(width: 16),
+              ElevatedButton(
+                onPressed: _showDarkConsent,
+                child: const Text('Show Dark Consent'),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           Text('Has user consent: $_hasConsent'),

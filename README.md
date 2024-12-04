@@ -8,7 +8,8 @@ Consent Screen for obtaining user permission to collect personal data.
 
 ## Localization
 
-Please refer to the documentation in English at this [link](https://github.com/STUN-Apps-Dev/stun_consent/blob/master/README.md).
+С документацией на русском языке можно ознакомиться по
+этой [ссылке](https://github.com/STUN-Apps-Dev/stun_consent/blob/master/README_RU.md).
 
 ## Getting Started
 

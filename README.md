@@ -97,6 +97,9 @@ To display the screen, use the `StunConsent.showConsent` method.
 ```dart
 final config = ConsentConfig(
     appName: 'Stun Consent Demo App',
+  onRequestPermissions: () async {
+    // Add code to request permission (eg permission to access the camera)
+  },
 );
 
 final hasConsent = await StunConsent.showConsent(context, config);

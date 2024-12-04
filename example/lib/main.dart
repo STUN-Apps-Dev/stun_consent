@@ -47,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appIconPath: 'assets/ic_launcher.png',
         appName: 'Stun Consent Demo App',
         contentPath: 'assets/content.json',
+        onRequestPermissions: () async {},
       ),
     );
     _hasConsent = await StunConsent.hasUserConsent;

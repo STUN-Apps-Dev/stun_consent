@@ -90,6 +90,9 @@ ConsentConfig.dark({
 ```dart
 final config = ConsentConfig(
     appName: 'Stun Consent Demo App',
+  onRequestPermissions: () async {
+    // Добавьте код для запроса разрешения (например разрешения на доступ к камере)
+  },
 );
 
 final hasConsent = await StunConsent.showConsent(context, config);

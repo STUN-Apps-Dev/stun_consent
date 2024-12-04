@@ -2,9 +2,9 @@
 
 Экран для получения разрешения пользователя на сбор персональных данных.
 
-| Horizontal                                                                                                       | Vertical                                                                                                      |
-|------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| <img height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/light.png?raw=true"> | <img  height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/dark.png?raw=true"> |
+| Light                                                                                                         | Dark                                                                                                          |
+|---------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| <img height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/light.jpeg?raw=true"> | <img  height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/dark.jpeg?raw=true"> |
 
 ## Локализация
 Please refer to the documentation in English at this [link](https://github.com/STUN-Apps-Dev/stun_consent/blob/master/README.md).

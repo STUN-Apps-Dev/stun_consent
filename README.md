@@ -2,9 +2,9 @@
 
 Consent Screen for obtaining user permission to collect personal data.
 
-| Horizontal                                                                                                       | Vertical                                                                                                      |
-|------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| <img height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/light.png?raw=true"> | <img  height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/dark.png?raw=true"> |
+| Light                                                                                                         | Dark                                                                                                          |
+|---------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| <img height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/light.jpeg?raw=true"> | <img  height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/dark.jpeg?raw=true"> |
 
 ## Localization
 

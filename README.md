@@ -33,8 +33,7 @@ import 'package:stun_consent/stun_consent.dart';
 ```
 
 Create a `content.json` file and place it in the `assets` folder.
-
-Structure of the `content.json` file:
+The structure of the content.json file. Replace the text with your own.
 
 ```json
 {

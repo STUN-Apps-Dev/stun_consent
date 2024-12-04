@@ -27,7 +27,7 @@ import 'package:stun_consent/stun_consent.dart';
 ```
 
 Создайте файл `content.json`, поместите его в папку `assets`
-Структура файла content.json
+Структура файла content.json. Замените текст на свой.
 ```json
 {
     "title": "Уважаемый пользователь!", 

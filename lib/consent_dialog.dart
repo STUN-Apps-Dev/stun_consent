@@ -7,140 +7,134 @@ class ConsentDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        Navigator.pop(context, false);
-        return Future(() => false);
-      },
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: config.backgroundColor,
+      appBar: AppBar(
         backgroundColor: config.backgroundColor,
-        appBar: AppBar(
-          backgroundColor: config.backgroundColor,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          title: Row(
-            children: [
-              const SizedBox(width: 16),
-              Image.asset(
-                config.appIconPath,
-                width: 32,
-                height: 32,
-              ),
-              const SizedBox(width: 16),
-              Flexible(
-                child: Text(
-                  config.appName,
-                  style: TextStyle(
-                    color: config.textColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+        elevation: 0,
+        forceMaterialTransparency: true,
+        automaticallyImplyLeading: false,
+        title: Row(
+          children: [
+            Image.asset(
+              config.appIconPath,
+              width: 32,
+              height: 32,
+            ),
+            const SizedBox(width: 16),
+            Flexible(
+              child: Text(
+                config.appName,
+                style: TextStyle(
+                  color: config.textColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ],
-          ),
-          actions: [
-            IconButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              icon: Transform.rotate(
-                angle: -math.pi / 4,
-                child: const Icon(
-                  Icons.add_circle_outline,
-                  color: Color(0xff757575),
-                  size: 28,
-                ),
-              ),
-              splashRadius: 24,
             ),
           ],
         ),
-        body: SizedBox(
-          height: double.infinity,
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      data.title,
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            icon: Transform.rotate(
+              angle: -math.pi / 4,
+              child: const Icon(
+                Icons.add_circle_outline,
+                color: Color(0xff757575),
+                size: 28,
+              ),
+            ),
+            splashRadius: 24,
+          ),
+        ],
+      ),
+      body: SizedBox(
+        height: double.infinity,
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    data.title,
+                    style: TextStyle(
+                      color: config.textColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    primary: false,
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (_, i) => Text(
+                      data.articles[i],
                       style: TextStyle(
+                        fontSize: 14,
                         color: config.textColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    ListView.separated(
-                      shrinkWrap: true,
-                      primary: false,
-                      padding: EdgeInsets.zero,
-                      itemBuilder: (_, i) => Text(
-                        data.articles[i],
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: config.textColor,
+                    separatorBuilder: (_, __) => const SizedBox(height: 16),
+                    itemCount: data.articles.length,
+                  ),
+                  const SizedBox(height: 16),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text:
+                              'Политика конфиденциальности приложения «${config.appName}»',
+                          style: const TextStyle(color: Colors.blue),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => launchUrlString(data.appPolicy),
                         ),
-                      ),
-                      separatorBuilder: (_, __) => const SizedBox(height: 16),
-                      itemCount: data.articles.length,
+                      ],
                     ),
-                    const SizedBox(height: 16),
-                    RichText(
+                  ),
+                  const SizedBox(height: 16),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    primary: false,
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (_, i) => RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text:
-                                'Политика конфиденциальности приложения «${config.appName}»',
-                            style: const TextStyle(color: Colors.blue),
+                            text: List.from(data.partnersPolicy.keys)[i],
+                            style: const TextStyle(color: Color(0xff0f84f0)),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => launchUrlString(data.appPolicy),
+                              ..onTap = () {
+                                final url = List.from(
+                                  data.partnersPolicy.values,
+                                )[i];
+
+                                launchUrlString(url);
+                              },
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    ListView.separated(
-                      shrinkWrap: true,
-                      primary: false,
-                      padding: EdgeInsets.zero,
-                      itemBuilder: (_, i) => RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: List.from(data.partnersPolicy.keys)[i],
-                              style: const TextStyle(color: Color(0xff0f84f0)),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  final url = List.from(
-                                    data.partnersPolicy.values,
-                                  )[i];
-
-                                  launchUrlString(url);
-                                },
-                            ),
-                          ],
-                        ),
-                      ),
-                      separatorBuilder: (_, __) => const SizedBox(height: 16),
-                      itemCount: data.partnersPolicy.length,
+                    separatorBuilder: (_, __) => const SizedBox(height: 16),
+                    itemCount: data.partnersPolicy.length,
+                  ),
+                  Opacity(
+                    opacity: 0,
+                    child: IgnorePointer(
+                      child: _BottombarWidget(config: config),
                     ),
-                    Opacity(
-                      opacity: 0,
-                      child: IgnorePointer(
-                        child: _BottombarWidget(config: config),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Align(
-                alignment: AlignmentDirectional.bottomCenter,
-                child: _BottombarWidget(config: config),
-              ),
-            ],
-          ),
+            ),
+            Align(
+              alignment: AlignmentDirectional.bottomCenter,
+              child: _BottombarWidget(config: config),
+            ),
+          ],
         ),
       ),
     );

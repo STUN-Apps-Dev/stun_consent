@@ -1,82 +1,128 @@
-# STUN Consent
+# Stun Consent
 
-Экран для полученя согласия разрешения пользователя
+Consent Screen for obtaining user permission to collect personal data.
 
-# Установка
+| Horizontal                                                                                                       | Vertical                                                                                                      |
+|------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| <img height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/light.png?raw=true"> | <img  height="800" src="https://github.com/STUN-Apps-Dev/stun_consent/blob/master/assets/dark.png?raw=true"> |
 
-1. Добавьте зависимость из гит-репозитория в `pubspec.yaml`.
-    ```yaml
-    stun_consent:
-      git:
-        url: ssh://git@git.jetbrains.space/stun/stun-packages/stun-consent.git
-    ```
-2. Добавьте в проект новый файл типа `json` и подключите его как `asset` в `pubspec.yaml`.
-3. Заполните файл контентом, который нужно отображать на экране согласия пользователя. Ниже представлен пример файла.
-    ```json
-    {
-        "title": "Это заголовок", 
-        "articles": [
-            "Это параграф с описанием",
-            "Это ещё один параграф с описанием"
-        ],
-        "app_policy": "Это ссылка на политику конфидециальности приложения",
-        "partners_policy": {
-            "Это ссылка на политику конфидециальности партнёров",
-            "Это ещё одна ссылка на политику конфидециальности партнёров"
-        }
-    }
-    ```
-    
-Теперь плагин готов к использованию.
+## Localization
 
-# Использование
-Импортируйте модуль в проект.
+Please refer to the documentation in English at this [link](https://github.com/STUN-Apps-Dev/stun_consent/blob/master/README.md).
+
+## Getting Started
+
+Add the following line to the `dependencies` section of your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  stun_consent: <latest-version>
+```
+
+Then run the command:
+
+```shell
+flutter pub get
+```
+
+Import the library:
+
 ```dart
 import 'package:stun_consent/stun_consent.dart';
 ```
 
-Доступ ко всем методам осуществляется через класс `StunConsent`.
+Create a `content.json` file and place it in the `assets` folder.
 
-Для показа экрана используйте метод `showConsent`. Он принимает на вход `BuildContext` и `ConsentConfig`.
+Structure of the `content.json` file:
+
+```json
+{
+    "title": "Dear User!", 
+    "articles": [
+        "We use ads to earn a little and make more useful applications for you.",
+        "At app launch, only one ad will be shown, which you can skip after 3 seconds. It won't be used during app usage so as not to bother you 🙂",
+        "For the correct functioning of the app, ad personalization, and statistics collection, we and our partners collect some anonymized data.",
+        "You can opt out of sharing this data through your device's privacy settings.",
+        "Detailed information about what data we and our partners collect, how we store and use it, can be found in the privacy policies via the links below."
+    ],
+    "app_policy": "https://stun-apps.com",
+    "partners_policy": {
+        "Privacy Policy of <YOUR COMPANY NAME>": "https://stun-apps.com",
+        "Privacy Policies of partners of <YOUR COMPANY NAME>": "https://stun-apps.com"
+    }
+}
+```
+
+## Usage Examples
 
 ### ConsentConfig
-Это класс, для стилизации экрана. Ниже описаны параметры класса.
-* `Color backgroundColor` - цвет, на котором расположен весь остальной контент.
-* `Color textColor` - цвет текста.
-* `Color accentColor` - акцентирующий цвет (цвет кнопки).
-* `String appIconPath` - путь к иконке приложения (из ассетов).
-* `String appName` - название приложения.
-* `String contentPath` - путь к файлу с контентом (из ассетов).
 
-Ниже представлен полный пример вызова экрана.
+This class is responsible for the appearance of the screen.
+
+**Properties of ConsentConfig:**
+
+```dart
+const kContentPath = 'assets/content.json';
+const kAppIconPath = 'assets/ic_launcher.png';
+
+ConsentConfig({
+    required this.appName,
+    this.backgroundColor = const Color(0xffe3e7e8),
+    this.footerColor = Colors.white,
+    this.textColor = const Color(0xff0c2e43),
+    this.accentColor = const Color(0xff5be769),
+    this.buttonTextColor = const Color(0xff0c2e43),
+    this.appIconPath = kAppIconPath,
+    this.contentPath = kContentPath,
+    this.onRequestPermissions,
+});
+
+ConsentConfig.dark({
+    required this.appName,
+    this.backgroundColor = const Color(0xFF212223),
+    this.footerColor = const Color(0x19000000),
+    this.textColor = Colors.white,
+    this.accentColor = const Color(0xFF27AE35),
+    this.buttonTextColor = const Color(0xFF232425),
+    this.appIconPath = kAppIconPath,
+    this.contentPath = kContentPath,
+    this.onRequestPermissions,
+});
+```
+
+## Displaying the Screen
+
+To display the screen, use the `StunConsent.showConsent` method.
 
 ```dart
 final config = ConsentConfig(
-    appIconPath: 'assets/ic_launcher.png',
     appName: 'Stun Consent Demo App',
-    contentPath: 'assets/content.json',
 );
 
 final hasConsent = await StunConsent.showConsent(context, config);
 ```
 
-`showConsent` возвращает переменную типа `bool`. 
+The `hasConsent` variable will contain whether the user has given consent or not.
 
-Она будет истина, если пользователь дал согласие. В остальных случаях ложна.
+The screen is shown only once until the cache is cleared or the app is reinstalled.
 
-Экран показывается только 1 раз, больше он показан не будет до очистки кеша или переустановки приложения.
+## Other Features
 
-## Вспомогательные методы
 ```dart
-final hasConsent = await StunConsent.hasUserConsent; // проверить дал ли пользователь согласие
-final wasShown = await StunConsent.dialogWasShown; // проверить был ли экран показан раньше
+final hasConsent = await StunConsent.hasUserConsent; // Check if the user has given consent
+final wasShown = await StunConsent.dialogWasShown; // Check if the screen was shown before
 ```
 
-## Отладка
-Для включения режима отладки/логирования используйте метод `enableDebug`. По умолчанию он установлен в `false`.
+## Debugging
+
+To enable debug/logging mode, use the `enableDebug` method. It is disabled by default.
+
+In debug mode, the screen will be shown every time the `showConsent` method is called.
 
 ```dart
 StunConsent.enableDebug(true);
 ```
 
-В режиме отладки экран будет показываться каждый раз при вызове метода `showConsent`.
+## Example
+
+A full usage example is available in the [example/](https://github.com/STUN-Apps-Dev/stun_consent) folder.
